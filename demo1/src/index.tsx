@@ -23,6 +23,7 @@ import {AuthProvider, setupAxios} from './app/modules/auth'
 import {AdmissionContextProvider} from './app/modules/auth/core/Addmission'
 import {CourseTypesContextProvider} from './app/pages/course/course-type/CourseTypeContext'
 import {NumberOfYearsCourseTypesContextProvider} from './app/pages/course/Number Of Years/NumberOfYearsContext'
+import {CourseCategoryContextProvider} from './app/pages/course/category/CourseCategoryContext'
 
 setupAxios(axios)
 Chart.register(...registerables)
@@ -34,13 +35,15 @@ if (container) {
     <QueryClientProvider client={queryClient}>
       <MetronicI18nProvider>
         <AuthProvider>
-          <NumberOfYearsCourseTypesContextProvider>
-            <CourseTypesContextProvider>
-              <AdmissionContextProvider>
-                <AppRoutes />
-              </AdmissionContextProvider>
-            </CourseTypesContextProvider>
-          </NumberOfYearsCourseTypesContextProvider>
+          <CourseCategoryContextProvider>
+            <NumberOfYearsCourseTypesContextProvider>
+              <CourseTypesContextProvider>
+                <AdmissionContextProvider>
+                  <AppRoutes />
+                </AdmissionContextProvider>
+              </CourseTypesContextProvider>
+            </NumberOfYearsCourseTypesContextProvider>
+          </CourseCategoryContextProvider>
         </AuthProvider>
       </MetronicI18nProvider>
       <ReactQueryDevtools initialIsOpen={false} />

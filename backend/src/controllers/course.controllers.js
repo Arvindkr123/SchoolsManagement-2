@@ -100,7 +100,9 @@ export const createCourseCategoryController = asyncHandler(
       });
       console.log(req.user);
       if (existedCategory) {
-        return res.status(400).json("Category already exists");
+        return res
+          .status(400)
+          .json({ error: "Course Category already exists" });
       }
       let newCategory = new categoryModel({
         category,

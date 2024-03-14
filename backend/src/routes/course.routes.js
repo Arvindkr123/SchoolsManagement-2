@@ -24,7 +24,7 @@ import {
 import { requireSignIn } from "../middlewares/auth.middleware.js";
 
 const router = Router();
-
+router.get("/categories", requireSignIn, getAllCourseCategoryController);
 router.get("/courseType", requireSignIn, getAllCourseTypeController);
 router.get("/numberOfYears", requireSignIn, getNumberOfYearsController);
 router
@@ -38,10 +38,10 @@ router
   .delete(requireSignIn, deleteCourseController);
 
 //  Add Course Category
+
 router
   .route("/addCategory")
   .post(requireSignIn, createCourseCategoryController);
-router.route("/categories").get(requireSignIn, getAllCourseCategoryController);
 router
   .route("/category/:id")
   .get(requireSignIn, getSingleCourseCategoryController)

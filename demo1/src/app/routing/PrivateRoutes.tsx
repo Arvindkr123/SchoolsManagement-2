@@ -11,6 +11,7 @@ import AddStudent from '../pages/AddStudent'
 import AddUser from '../pages/AddUser'
 import UserList from '../pages/UserList'
 import AddNumberYearCourse from '../pages/course/Number Of Years/AddNumberYearCourse'
+import AddCourseCategory from '../pages/course/category/AddCategory'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -66,7 +67,15 @@ const PrivateRoutes = () => {
           path='/course/category'
           element={
             <SuspensedView>
-              <CourseCategory />
+              <CourseCategory className='' />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='/course/category/add'
+          element={
+            <SuspensedView>
+              <AddCourseCategory />
             </SuspensedView>
           }
         />
