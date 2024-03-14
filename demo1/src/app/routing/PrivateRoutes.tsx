@@ -10,8 +10,7 @@ import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
 import AddStudent from '../pages/AddStudent'
 import AddUser from '../pages/AddUser'
 import UserList from '../pages/UserList'
-import AddCourseEditAndAdd from '../pages/course/course-type/AddCourseEditAndAdd'
-import AddCourseTypeEdit from '../pages/course/course-type/AddCourseTypeEdit'
+import AddNumberYearCourse from '../pages/course/Number Of Years/AddNumberYearCourse'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -28,6 +27,8 @@ const PrivateRoutes = () => {
   const CourseCategory = lazy(() => import('../pages/course/category'))
   const NumberOfYearsCourse = lazy(() => import('../pages/course/Number Of Years'))
   const AddCourse = lazy(() => import('../pages/course'))
+  const AddCourseEditAndAdd = lazy(() => import('../pages/course/course-type/AddCourseEditAndAdd'))
+  const AddCourseTypeEdit = lazy(() => import('../pages/course/course-type/AddCourseTypeEdit'))
 
   return (
     <Routes>
@@ -69,6 +70,7 @@ const PrivateRoutes = () => {
             </SuspensedView>
           }
         />
+        {/* ======================================Add Number Of Years Course Type Start ============================================= */}
         <Route
           path='/course/no_of_years_course'
           element={
@@ -77,6 +79,15 @@ const PrivateRoutes = () => {
             </SuspensedView>
           }
         />
+        <Route
+          path='/course/no_of_years_course/add'
+          element={
+            <SuspensedView>
+              <AddNumberYearCourse />
+            </SuspensedView>
+          }
+        />
+        {/* ======================================Add Number Of Years Course Type End ============================================= */}
         <Route
           path='/course/addCourse'
           element={

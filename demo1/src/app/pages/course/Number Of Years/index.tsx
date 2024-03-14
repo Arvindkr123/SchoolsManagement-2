@@ -1,6 +1,7 @@
 import {KTIcon, toAbsoluteUrl} from '../../../../_metronic/helpers'
 import moment from 'moment'
 import {useNumberOfYearsCourseTypesContext} from './NumberOfYearsContext'
+import {useNavigate} from 'react-router-dom'
 
 type Props = {
   className: string
@@ -9,6 +10,7 @@ type Props = {
 const NumberOfYearsCourse: React.FC<Props> = ({className}) => {
   const ctx = useNumberOfYearsCourseTypesContext()
   // console.log(ctx.numberOfCourseYearsTypesLists.data)
+  const navigate = useNavigate()
 
   return (
     <div className={`card ${className}`}>
@@ -24,7 +26,10 @@ const NumberOfYearsCourse: React.FC<Props> = ({className}) => {
           data-bs-trigger='hover'
           title='Click to add a user'
         >
-          <button className='btn btn-sm btn-light-primary'>
+          <button
+            onClick={() => navigate('/course/no_of_years_course/add')}
+            className='btn btn-sm btn-light-primary'
+          >
             <KTIcon iconName='plus' className='fs-3' />
             New Member
           </button>

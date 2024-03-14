@@ -29,11 +29,11 @@ export const NumberOfYearsCourseTypesContextProvider = ({children}) => {
   console.log(numberOfCourseYearsTypesLists)
 
   //console.log(studentsLists)
-  const createAddCourseTypeMutation = useMutation({
+  const createNumberOfYearsCourseTypeMutation = useMutation({
     mutationFn: async (data) => {
       console.log(data)
       return axios
-        .post('http://localhost:8080/api/courses/courseType', data, config)
+        .post('http://localhost:8080/api/courses/numberOfYears', data, config)
         .then((res) => res.data)
     },
     onMutate: () => {
@@ -98,7 +98,11 @@ export const NumberOfYearsCourseTypesContextProvider = ({children}) => {
 
   return (
     <NumberOfYearsCourseTypesContext.Provider
-      value={{numberOfCourseYearsTypesLists, deleteNumberOfYearsCourseTypeMutation}}
+      value={{
+        numberOfCourseYearsTypesLists,
+        deleteNumberOfYearsCourseTypeMutation,
+        createNumberOfYearsCourseTypeMutation,
+      }}
     >
       {children}
     </NumberOfYearsCourseTypesContext.Provider>
