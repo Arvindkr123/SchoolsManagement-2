@@ -88,7 +88,11 @@ const NumberOfYearsCourse: React.FC<Props> = ({className}) => {
                           <KTIcon iconName='pencil' className='fs-3' />
                         </button>
                         <button
-                          onClick={() => ctx.deleteNumberOfYearsCourseTypeMutation.mutate(ele._id)}
+                          onClick={() => {
+                            if (window.confirm('Are you sure do you want to delete')) {
+                              ctx.deleteNumberOfYearsCourseTypeMutation.mutate(ele._id)
+                            }
+                          }}
                           className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'
                         >
                           <KTIcon iconName='trash' className='fs-3' />

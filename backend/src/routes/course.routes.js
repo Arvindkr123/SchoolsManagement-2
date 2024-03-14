@@ -58,7 +58,11 @@ router
 
 // Add Course Number of Years
 
-router.post(requireSignIn, createCourseNumberOfYearController);
+router.post(
+  "/numberOfYears",
+  requireSignIn,
+  createCourseNumberOfYearController
+);
 router
   .route("/numberOfYears/:id")
   .get(getSingleNumberOfYearsController)
