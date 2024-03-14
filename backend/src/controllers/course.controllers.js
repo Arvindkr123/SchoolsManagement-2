@@ -279,7 +279,9 @@ export const createCourseNumberOfYearController = asyncHandler(
         numberOfYears,
       });
       if (existedNumberOfYears) {
-        return res.status(400).json("already exists number of years type");
+        return res
+          .status(400)
+          .json({ error: "already exists number of years type" });
       }
       let newCourseNumberOfYears = new NumberOfYearsModel({
         numberOfYears,

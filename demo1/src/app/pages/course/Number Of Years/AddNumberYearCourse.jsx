@@ -11,25 +11,29 @@ const numberOfYearsCourseSchema = Yup.object().shape({
 
 const AddNumberYearCourse = () => {
   const resLocation = useLocation()
-  console.log(resLocation.state)
+  //console.log(resLocation.state)
   const [editNumberOfYearsCourse, setEditNumberOfYearsCourse] = useState(resLocation.state)
   const [loading, setLoading] = React.useState(false)
   const navigate = useNavigate()
 
   const ctx = useNumberOfYearsCourseTypesContext()
 
-  let initialValues = {numberOfYears: 1}
+  let initialValues = editNumberOfYearsCourse ? editNumberOfYearsCourse : {numberOfYears: 1}
   const formik = useFormik({
     initialValues,
     validationSchema: numberOfYearsCourseSchema,
     onSubmit: async (values) => {
       setLoading(true)
       if (editNumberOfYearsCourse) {
+        ctx.updateNumberOfYearsCourseTypeMutation.mutate({
+          ...values,
+          id: editNumberOfYearsCourse._id,
+        })
       } else {
         // do this
         ctx.createNumberOfYearsCourseTypeMutation.mutate(values)
-        navigate('/course/no_of_years_course')
       }
+      navigate('/course/no_of_years_course')
     },
   })
   return (

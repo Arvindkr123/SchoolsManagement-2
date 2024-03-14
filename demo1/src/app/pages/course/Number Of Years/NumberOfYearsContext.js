@@ -26,7 +26,7 @@ export const NumberOfYearsCourseTypesContextProvider = ({children}) => {
     },
   })
 
-  console.log(numberOfCourseYearsTypesLists)
+  //console.log(numberOfCourseYearsTypesLists)
 
   //console.log(studentsLists)
   const createNumberOfYearsCourseTypeMutation = useMutation({
@@ -45,15 +45,15 @@ export const NumberOfYearsCourseTypesContextProvider = ({children}) => {
     },
 
     onSuccess: () => {
-      alert('Add Course Type Successfully!')
+      alert('Added Number of Years Course Type Successfully!')
       console.log('success')
     },
 
     onSettled: async (_, error) => {
       console.log('settled')
       if (error) {
-        //console.log(error)
-        alert('There is Course Type Error You have existed course type !')
+        //console.log(error.response.data.error)
+        alert(error.response.data.error)
       } else {
         await queryClient.invalidateQueries({queryKey: ['getCourseTypes']})
       }
@@ -80,18 +80,22 @@ export const NumberOfYearsCourseTypesContextProvider = ({children}) => {
   })
 
   // update Course type
-  const updateCourseTypeMutation = useMutation({
+  const updateNumberOfYearsCourseTypeMutation = useMutation({
     mutationFn: async (updateData) => {
       //console.log(updateData)
       return axios
-        .put(`http://localhost:8080/api/courses/courseType/${updateData.id}`, updateData, config) // Corrected order of arguments
+        .put(
+          `http://localhost:8080/api/courses/numberOfYears/${updateData._id}`,
+          updateData,
+          config
+        ) // Corrected order of arguments
         .then((res) => res.data)
     },
     onSettled: async (_, error) => {
       if (error) {
-        alert('Error while updating student...', error)
+        alert(error.response.data.error)
       } else {
-        await queryClient.invalidateQueries({queryKey: ['getCourseTypes']})
+        await queryClient.invalidateQueries({queryKey: ['getNumberOfCourseYearsTypes']})
       }
     },
   })
@@ -99,6 +103,7 @@ export const NumberOfYearsCourseTypesContextProvider = ({children}) => {
   return (
     <NumberOfYearsCourseTypesContext.Provider
       value={{
+        updateNumberOfYearsCourseTypeMutation,
         numberOfCourseYearsTypesLists,
         deleteNumberOfYearsCourseTypeMutation,
         createNumberOfYearsCourseTypeMutation,
