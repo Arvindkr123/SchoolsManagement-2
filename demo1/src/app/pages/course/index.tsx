@@ -1,6 +1,7 @@
 import moment from 'moment'
 import {KTIcon, toAbsoluteUrl} from '../../../_metronic/helpers'
 import {useCourseContext} from './CourseContext'
+import {useNavigate} from 'react-router-dom'
 
 type Props = {
   className: string
@@ -8,7 +9,8 @@ type Props = {
 
 const AddCourse: React.FC<Props> = ({className}) => {
   const ctx = useCourseContext()
-  console.log(ctx.getCourseLists)
+  // console.log(ctx.getCourseLists)
+  const navigate = useNavigate()
 
   return (
     <div className={`card ${className}`}>
@@ -18,7 +20,10 @@ const AddCourse: React.FC<Props> = ({className}) => {
           <span className='card-label fw-bold fs-3 mb-1'>Course Lists</span>
         </h3>
         <div className='card-toolbar'>
-          <button className='btn btn-sm btn-light-primary'>
+          <button
+            onClick={() => navigate('/course/addCourse/add')}
+            className='btn btn-sm btn-light-primary'
+          >
             <KTIcon iconName='plus' className='fs-2' />
             Add New Course
           </button>
@@ -106,10 +111,16 @@ const AddCourse: React.FC<Props> = ({className}) => {
                       </a>
                     </td>
                     <td className='text-center'>
-                      <button className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'>
+                      <button
+                        onClick={() => navigate('/course/addCourse/add', {state: courseData})}
+                        className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+                      >
                         <KTIcon iconName='pencil' className='fs-3' />
                       </button>
-                      <button className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'>
+                      <button
+                        onClick={() => ctx.deleteCourseMutation.mutate(courseData._id)}
+                        className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'
+                      >
                         <KTIcon iconName='trash' className='fs-3' />
                       </button>
                     </td>

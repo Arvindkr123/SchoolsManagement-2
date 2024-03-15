@@ -32,6 +32,7 @@ const PrivateRoutes = () => {
     () => import('../pages/course/Number Of Years/AddNumberYearCourse')
   )
   const AddCourseCategory = lazy(() => import('../pages/course/category/AddCategory'))
+  const AddCourseUpdateAndAdd = lazy(() => import('../pages/course/AddCourse'))
 
   return (
     <Routes>
@@ -104,6 +105,14 @@ const PrivateRoutes = () => {
           element={
             <SuspensedView>
               <AddCourse className='' />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='/course/addCourse/add'
+          element={
+            <SuspensedView>
+              <AddCourseUpdateAndAdd />
             </SuspensedView>
           }
         />

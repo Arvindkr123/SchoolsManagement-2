@@ -31,9 +31,7 @@ export const CourseContextProvider = ({children}) => {
   const createCourseMutation = useMutation({
     mutationFn: async (data) => {
       console.log(data)
-      return axios
-        .post('http://localhost:8080/api/courses/add', data, config)
-        .then((res) => res.data)
+      return axios.post('http://localhost:8080/api/courses', data, config).then((res) => res.data)
     },
     onMutate: () => {
       console.log('mutate')
@@ -62,9 +60,7 @@ export const CourseContextProvider = ({children}) => {
   // Course Types
   const deleteCourseMutation = useMutation({
     mutationFn: async (id) => {
-      return axios
-        .delete(`http://localhost:8080/api/courses//${id}`, config)
-        .then((res) => res.data)
+      return axios.delete(`http://localhost:8080/api/courses/${id}`, config).then((res) => res.data)
     },
     onSuccess: () => {
       alert('Course  deleted successfully')
@@ -83,7 +79,7 @@ export const CourseContextProvider = ({children}) => {
     mutationFn: async (updateData) => {
       //console.log(updateData)
       return axios
-        .put(`http://localhost:8080/api/courses//${updateData._id}`, updateData, config) // Corrected order of arguments
+        .put(`http://localhost:8080/api/courses/${updateData._id}`, updateData, config) // Corrected order of arguments
         .then((res) => res.data)
     },
     onSettled: async (_, error) => {
