@@ -27,6 +27,7 @@ const router = Router();
 router.get("/categories", requireSignIn, getAllCourseCategoryController);
 router.get("/courseType", requireSignIn, getAllCourseTypeController);
 router.get("/numberOfYears", requireSignIn, getNumberOfYearsController);
+// course start here ...
 router
   .route("/")
   .post(requireSignIn, createCourseController)

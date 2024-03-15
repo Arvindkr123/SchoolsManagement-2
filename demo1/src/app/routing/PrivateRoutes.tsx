@@ -101,7 +101,7 @@ const PrivateRoutes = () => {
           path='/course/addCourse'
           element={
             <SuspensedView>
-              <AddCourse />
+              <AddCourse className='' />
             </SuspensedView>
           }
         />
