@@ -48,7 +48,7 @@ const AddCourse: React.FC<Props> = ({className}) => {
             {/* begin::Table body */}
             <tbody>
               {ctx.getCourseLists.data.length > 0 ? (
-                ctx.getCourseLists.data.map((courseData, courseIndex) => (
+                ctx.getCourseLists.data.map((courseData: any, courseIndex: any) => (
                   <tr key={courseData._id}>
                     <td>
                       <div className='d-flex align-items-center'>

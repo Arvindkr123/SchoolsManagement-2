@@ -10,8 +10,6 @@ import BuilderPageWrapper from '../pages/layout-builder/BuilderPageWrapper'
 import AddStudent from '../pages/AddStudent'
 import AddUser from '../pages/AddUser'
 import UserList from '../pages/UserList'
-import AddNumberYearCourse from '../pages/course/Number Of Years/AddNumberYearCourse'
-import AddCourseCategory from '../pages/course/category/AddCategory'
 
 const PrivateRoutes = () => {
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
@@ -30,6 +28,10 @@ const PrivateRoutes = () => {
   const AddCourse = lazy(() => import('../pages/course'))
   const AddCourseEditAndAdd = lazy(() => import('../pages/course/course-type/AddCourseEditAndAdd'))
   const AddCourseTypeEdit = lazy(() => import('../pages/course/course-type/AddCourseTypeEdit'))
+  const AddNumberYearCourse = lazy(
+    () => import('../pages/course/Number Of Years/AddNumberYearCourse')
+  )
+  const AddCourseCategory = lazy(() => import('../pages/course/category/AddCategory'))
 
   return (
     <Routes>
