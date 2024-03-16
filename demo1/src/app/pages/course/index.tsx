@@ -112,7 +112,7 @@ const AddCourse: React.FC<Props> = ({className}) => {
                     </td>
                     <td className='text-center'>
                       <button
-                        onClick={() => navigate('/course/addCourse/add', {state: courseData})}
+                        onClick={() => navigate('/course/addCourse/update', {state: courseData})}
                         className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
                       >
                         <KTIcon iconName='pencil' className='fs-3' />

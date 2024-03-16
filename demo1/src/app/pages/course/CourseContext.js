@@ -77,7 +77,7 @@ export const CourseContextProvider = ({children}) => {
   // update Course type
   const updateCourseMutation = useMutation({
     mutationFn: async (updateData) => {
-      //console.log(updateData)
+      console.log(updateData)
       return axios
         .put(`http://localhost:8080/api/courses/${updateData._id}`, updateData, config) // Corrected order of arguments
         .then((res) => res.data)

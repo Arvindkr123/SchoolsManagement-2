@@ -15,28 +15,32 @@ const CourseSchema = Yup.object().shape({
   category: Yup.string().required('Course Category is required'),
 })
 
-const AddCourseUpdateAndAdd = () => {
+const EditCourse = () => {
   const {courseTypesLists} = useCourseTypesContext()
   const {numberOfCourseYearsTypesLists} = useNumberOfYearsCourseTypesContext()
   const {getCourseCategoryLists} = useGetCourseCategoryContextContext()
-  const {createCourseMutation} = useCourseContext()
+  const {updateCourseMutation} = useCourseContext()
+  // console.log(courseTypesLists)
+
+  const resLocation = useLocation()
+  //console.log(resLocation.state)
+  const [editCourse, setEditCourse] = useState({
+    _id: resLocation.state._id,
+    courseName: resLocation.state.courseName,
+    courseType: resLocation.state.courseType._id,
+    numberOfYears: resLocation.state.numberOfYears._id,
+    category: resLocation.state.category._id,
+  })
   const [loading, setLoading] = React.useState(false)
   const navigate = useNavigate()
   //console.log(editCourse)
 
-  let initialValues = {
-    courseName: 'PDP',
-    courseType: 'Semester',
-    numberOfYears: 2,
-    category: 'Web Developer',
-  }
-
+  let initialValues = editCourse
   const formik = useFormik({
     initialValues,
     validationSchema: CourseSchema,
     onSubmit: async (values) => {
-      setLoading(true)
-      createCourseMutation.mutate(values)
+      updateCourseMutation.mutate({...values, _id: resLocation.state._id})
       navigate('/course/addCourse')
       //console.log(values)
     },
@@ -52,7 +56,7 @@ const AddCourseUpdateAndAdd = () => {
         aria-controls='kt_account_profile_details'
       >
         <div className='card-title m-0'>
-          <h3 className='fw-bolder m-0'>Add Course</h3>
+          <h3 className='fw-bolder m-0'>Edit Course</h3>
         </div>
       </div>
 
@@ -163,4 +167,4 @@ const AddCourseUpdateAndAdd = () => {
     </div>
   )
 }
-export default AddCourseUpdateAndAdd
+export default EditCourse
