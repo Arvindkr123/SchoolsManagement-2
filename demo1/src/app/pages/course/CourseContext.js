@@ -30,7 +30,7 @@ export const CourseContextProvider = ({children}) => {
   //console.log(studentsLists)
   const createCourseMutation = useMutation({
     mutationFn: async (data) => {
-      console.log(data)
+      //console.log(data)
       return axios.post('http://localhost:8080/api/courses', data, config).then((res) => res.data)
     },
     onMutate: () => {
