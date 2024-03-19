@@ -10,6 +10,7 @@ import {
 import {useAdmissionContext} from '../modules/auth/core/Addmission'
 import {useLocation, useNavigate} from 'react-router-dom'
 import {toAbsoluteUrl} from '../../_metronic/helpers'
+import {useCourseContext} from './course/CourseContext'
 const BASE_URL_Image = 'http://localhost:8080/images'
 
 const addmissionFormSchema = Yup.object().shape({
@@ -108,6 +109,9 @@ const AddMissionForm: React.FC = () => {
       navigate('/students')
     },
   })
+
+  const courseCtx = useCourseContext()
+  console.log(courseCtx.getCourseLists.data)
 
   return (
     <div className='card mb-5 mb-xl-10'>
@@ -561,7 +565,7 @@ const AddMissionForm: React.FC = () => {
                       {...formik.getFieldProps('select_course')}
                     >
                       <option value=''>-select-</option>
-                      {[
+                      {/* {[
                         'Diploma in 3D Animation',
                         'Diploma in Visual Effects',
                         'Bsc. in Animation Film Making',
@@ -603,6 +607,12 @@ const AddMissionForm: React.FC = () => {
                       ].map((c, i) => (
                         <option key={i} value={c}>
                           {c}
+                        </option>
+                      ))} */}
+
+                      {courseCtx.getCourseLists.data.map((c: any) => (
+                        <option key={c._id} value={c.courseName}>
+                          {c.courseName}
                         </option>
                       ))}
                     </select>
