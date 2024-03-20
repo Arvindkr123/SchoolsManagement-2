@@ -58,7 +58,7 @@ const AddCourseCategory = () => {
                     <input
                       type='text'
                       className='form-control form-control-lg form-control-solid mb-3 mb-lg-0'
-                      placeholder='Number Of Course Years'
+                      placeholder='Enter Course Category...'
                       {...formik.getFieldProps('category')}
                     />
                     {formik.touched.category && formik.errors.category && (
