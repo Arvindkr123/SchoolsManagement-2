@@ -33,12 +33,9 @@ export const createCourseController = asyncHandler(async (req, res, next) => {
 
 export const getAllCourseController = asyncHandler(async (req, res, next) => {
   try {
-    const courses = await CourseModel.find({}).populate([
-      "category",
-      "numberOfYears",
-      "courseType",
-      "user",
-    ]);
+    const courses = await CourseModel.find({})
+      .populate(["category", "numberOfYears", "courseType", "user"])
+      .sort({ createdAt: -1 });
     res.status(200).json(courses);
   } catch (error) {
     res.status(500).json({ error: error });
