@@ -1,182 +1,124 @@
 import {KTIcon, toAbsoluteUrl} from '../../../../_metronic/helpers'
 
-const SubjectTable = () => {
+const SubjectTable = ({className}) => {
   return (
     <>
-      <div className='table-responsive'>
-        {/* begin::Table */}
-        <table className='table align-middle gs-0 gy-3'>
-          {/* begin::Table head */}
-          <thead>
-            <tr>
-              <th className='p-0 w-50px'></th>
-              <th className='p-0 min-w-150px'></th>
-              <th className='p-0 min-w-140px'></th>
-              <th className='p-0 min-w-120px'></th>
-            </tr>
-          </thead>
-          {/* end::Table head */}
-          {/* begin::Table body */}
-          <tbody>
-            <tr>
-              <td>
-                <div className='symbol symbol-50px me-2'>
-                  <span className='symbol-label'>
-                    <img
-                      src={toAbsoluteUrl('/media/svg/avatars/001-boy.svg')}
-                      className='h-75 align-self-end'
-                      alt=''
-                    />
-                  </span>
-                </div>
-              </td>
-              <td>
-                <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
-                  Brad Simmons
-                </a>
-                <span className='text-muted fw-semibold d-block'>Successful Fellas</span>
-              </td>
-              <td>
-                <span className='text-muted fw-semibold d-block fs-7'>Paid</span>
-                <span className='text-dark fw-bold d-block fs-5'>$200,500</span>
-              </td>
-              <td className='text-end'>
-                <span className='text-primary fs-7 fw-bold'>+28%</span>
-              </td>
-              <td className='text-end'>
-                <a href='#' className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'>
-                  <KTIcon iconName='arrow-right' className='fs-2' />
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div className='symbol symbol-50px me-2'>
-                  <span className='symbol-label'>
-                    <img
-                      src={toAbsoluteUrl('/media/svg/avatars/018-girl-9.svg')}
-                      className='h-75 align-self-end'
-                      alt=''
-                    />
-                  </span>
-                </div>
-              </td>
-              <td>
-                <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
-                  Jessie Clarcson
-                </a>
-                <span className='text-muted fw-semibold d-block'>HTML, CSS Coding</span>
-              </td>
-              <td>
-                <span className='text-muted fw-semibold d-block fs-7'>Paid</span>
-                <span className='text-dark fw-bold d-block fs-5'>$1,200,000</span>
-              </td>
-              <td className='text-end'>
-                <span className='text-warning fs-7 fw-bold'>+52%</span>
-              </td>
-              <td className='text-end'>
-                <a href='#' className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'>
-                  <KTIcon iconName='arrow-right' className='fs-2' />
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div className='symbol symbol-50px me-2'>
-                  <span className='symbol-label'>
-                    <img
-                      src={toAbsoluteUrl('/media/svg/avatars/047-girl-25.svg')}
-                      className='h-75 align-self-end'
-                      alt=''
-                    />
-                  </span>
-                </div>
-              </td>
-              <td>
-                <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
-                  Jessie Clarcson
-                </a>
-                <span className='text-muted fw-semibold d-block'>PHP, Laravel, VueJS</span>
-              </td>
-              <td>
-                <span className='text-muted fw-semibold d-block fs-7'>Paid</span>
-                <span className='text-dark fw-bold d-block fs-5'>$1,200,000</span>
-              </td>
-              <td className='text-end'>
-                <span className='text-danger fs-7 fw-bold'>+52%</span>
-              </td>
-              <td className='text-end'>
-                <a href='#' className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'>
-                  <KTIcon iconName='arrow-right' className='fs-2' />
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div className='symbol symbol-50px me-2'>
-                  <span className='symbol-label'>
-                    <img
-                      src={toAbsoluteUrl('/media/svg/avatars/014-girl-7.svg')}
-                      className='h-75 align-self-end'
-                      alt=''
-                    />
-                  </span>
-                </div>
-              </td>
-              <td>
-                <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
-                  Natali Trump
-                </a>
-                <span className='text-muted fw-semibold d-block'>UI/UX Designer</span>
-              </td>
-              <td>
-                <span className='text-muted fw-semibold d-block fs-7'>Paid</span>
-                <span className='text-dark fw-bold d-block fs-5'>$3,400,000</span>
-              </td>
-              <td className='text-end'>
-                <span className='text-success fs-7 fw-bold'>-34%</span>
-              </td>
-              <td className='text-end'>
-                <a href='#' className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'>
-                  <KTIcon iconName='arrow-right' className='fs-2' />
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div className='symbol symbol-50px me-2'>
-                  <span className='symbol-label'>
-                    <img
-                      src={toAbsoluteUrl('/media/svg/avatars/043-boy-18.svg')}
-                      className='h-75 align-self-end'
-                      alt=''
-                    />
-                  </span>
-                </div>
-              </td>
-              <td>
-                <a href='#' className='text-dark fw-bold text-hover-primary mb-1 fs-6'>
-                  Kevin Leonard
-                </a>
-                <span className='text-muted fw-semibold d-block'>Art Director</span>
-              </td>
-              <td>
-                <span className='text-muted fw-semibold d-block fs-7'>Paid</span>
-                <span className='text-dark fw-bold d-block fs-5'>$35,600,000</span>
-              </td>
-              <td className='text-end'>
-                <span className='text-info fs-7 fw-bold'>+230%</span>
-              </td>
-              <td className='text-end'>
-                <a href='#' className='btn btn-sm btn-icon btn-bg-light btn-active-color-primary'>
-                  <KTIcon iconName='arrow-right' className='fs-2' />
-                </a>
-              </td>
-            </tr>
-          </tbody>
-          {/* end::Table body */}
-        </table>
-      </div>
+      <>
+        {/* begin::Header */}
+        {/* <div className='card-header border-0 pt-5'>
+          <div
+            className='card-toolbar'
+            data-bs-toggle='tooltip'
+            data-bs-placement='top'
+            data-bs-trigger='hover'
+            title='Click to add a user'
+          >
+            <a
+              href='#'
+              className='btn btn-sm btn-light-primary'
+              // data-bs-toggle='modal'
+              // data-bs-target='#kt_modal_invite_friends'
+            >
+              <KTIcon iconName='plus' className='fs-3' />
+              New Member
+            </a>
+          </div>
+        </div> */}
+        {/* end::Header */}
+        {/* begin::Body */}
+        <div className='card-body py-3'>
+          {/* begin::Table container */}
+          <div className='table-responsive'>
+            {/* begin::Table */}
+            <table className='table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4'>
+              {/* begin::Table head */}
+              <thead>
+                <tr className='fw-bold text-muted'>
+                  <th className='w-25px'>
+                    <div className='form-check form-check-sm form-check-custom form-check-solid'></div>
+                  </th>
+                  <th className='min-w-150px'>Authors</th>
+                  <th className='min-w-140px'>Company</th>
+                  <th className='min-w-120px'>Progress</th>
+                  <th className='min-w-100px text-end'>Actions</th>
+                </tr>
+              </thead>
+              {/* end::Table head */}
+              {/* begin::Table body */}
+              <tbody>
+                <tr>
+                  <td>
+                    <div className='form-check form-check-sm form-check-custom form-check-solid'></div>
+                  </td>
+                  <td>
+                    <div className='d-flex align-items-center'>
+                      <div className='symbol symbol-45px me-5'>
+                        <img src={toAbsoluteUrl('/media/avatars/300-14.jpg')} alt='' />
+                      </div>
+                      <div className='d-flex justify-content-start flex-column'>
+                        <a href='#' className='text-dark fw-bold text-hover-primary fs-6'>
+                          Ana Simmons
+                        </a>
+                        <span className='text-muted fw-semibold text-muted d-block fs-7'>
+                          HTML, JS, ReactJS
+                        </span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <a href='#' className='text-dark fw-bold text-hover-primary d-block fs-6'>
+                      Intertico
+                    </a>
+                    <span className='text-muted fw-semibold text-muted d-block fs-7'>
+                      Web, UI/UX Design
+                    </span>
+                  </td>
+                  <td className='text-end'>
+                    <div className='d-flex flex-column w-100 me-2'>
+                      <div className='d-flex flex-stack mb-2'>
+                        <span className='text-muted me-2 fs-7 fw-semibold'>50%</span>
+                      </div>
+                      <div className='progress h-6px w-100'>
+                        <div
+                          className='progress-bar bg-primary'
+                          role='progressbar'
+                          style={{width: '50%'}}
+                        ></div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div className='d-flex justify-content-end flex-shrink-0'>
+                      <a
+                        href='#'
+                        className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+                      >
+                        <KTIcon iconName='switch' className='fs-3' />
+                      </a>
+                      <a
+                        href='#'
+                        className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
+                      >
+                        <KTIcon iconName='pencil' className='fs-3' />
+                      </a>
+                      <a
+                        href='#'
+                        className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'
+                      >
+                        <KTIcon iconName='trash' className='fs-3' />
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+              {/* end::Table body */}
+            </table>
+            {/* end::Table */}
+          </div>
+          {/* end::Table container */}
+        </div>
+        {/* begin::Body */}
+      </>
     </>
   )
 }
