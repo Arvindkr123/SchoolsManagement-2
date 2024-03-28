@@ -1,11 +1,77 @@
+import {Fragment, useState} from 'react'
 import {KTIcon, toAbsoluteUrl} from '../../../../_metronic/helpers'
+import SubjectTableRead from './SubjectTableRead'
+import AddSubjectForm from './AddSubjectForm'
+import EditSubjectForm from './EditSubjectForm'
 
 const SubjectTable = ({className}) => {
+  const [subjects, setSubjects] = useState([
+    {
+      id: 1,
+      subjectName: 'English',
+      subjectCode: 'ENG-101',
+      fullMarks: 100,
+      passMarks: 40,
+      addedBy: 'Admin',
+      date: '28/03/2024',
+    },
+    {
+      id: 2,
+      subjectName: 'Math',
+      subjectCode: 'MH-101',
+      fullMarks: 100,
+      passMarks: 40,
+      addedBy: 'Admin',
+      date: '28/03/2024',
+    },
+    {
+      id: 3,
+      subjectName: 'Math2',
+      subjectCode: 'MH2-101',
+      fullMarks: 100,
+      passMarks: 40,
+      addedBy: 'Admin',
+      date: '28/03/2024',
+    },
+  ])
+
+  const [newSubject, setNewSubject] = useState({
+    subjectName: '',
+    subjectCode: '',
+    fullMarks: 0,
+    passMarks: 0,
+  })
+
+  const [editSubjectId, setEditSubjectId] = useState(null)
+  //console.log(editSubjectId)
+
+  const [editSubject, setEditSubject] = useState({})
+  //console.log(editSubject)
+
+  const [AddSubjectFromToggle, setAddSubjectFormToggle] = useState(false)
+  //console.log(newSubject)
+
+  const handleAddNewSubject = (e) => {
+    e.preventDefault()
+    //console.log(newSubject)
+    setSubjects([...subjects, {...newSubject, id: Date.now(), addedBy: 'Admin', date: Date.now()}])
+  }
+
+  const handleDeleteSubject = (id) => {
+    setSubjects(subjects.filter((subject) => subject.id !== id))
+  }
+
+  const handleEditSubject = (e) => {
+    e.preventDefault()
+    const editTableSubject = subjects.filter((s) => s.id === editSubject.id)
+    console.log(editTableSubject)
+  }
+
   return (
     <>
-      <>
+      <div className='card'>
         {/* begin::Header */}
-        {/* <div className='card-header border-0 pt-5'>
+        <div className='card-header border-0 pt-5'>
           <div
             className='card-toolbar'
             data-bs-toggle='tooltip'
@@ -13,112 +79,74 @@ const SubjectTable = ({className}) => {
             data-bs-trigger='hover'
             title='Click to add a user'
           >
-            <a
-              href='#'
+            <button
+              onClick={() => setAddSubjectFormToggle((prev) => !prev)}
+              type='button'
               className='btn btn-sm btn-light-primary'
-              // data-bs-toggle='modal'
-              // data-bs-target='#kt_modal_invite_friends'
             >
               <KTIcon iconName='plus' className='fs-3' />
-              New Member
-            </a>
+              Add Subjects
+            </button>
           </div>
-        </div> */}
+        </div>
         {/* end::Header */}
         {/* begin::Body */}
         <div className='card-body py-3'>
           {/* begin::Table container */}
           <div className='table-responsive'>
+            <form onSubmit={AddSubjectFromToggle ? handleAddNewSubject : handleEditSubject}>
+              <table className='table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4'>
+                {/* begin::Table head */}
+                <thead>
+                  <tr className='fw-bold text-muted'>
+                    <th className='w-25px'>
+                      <div className='form-check form-check-sm form-check-custom form-check-solid'></div>
+                    </th>
+                    <th className='min-w-150px'>Subject Name</th>
+                    <th className='min-w-140px'>Subject Code</th>
+                    <th className='min-w-120px'>Full Marks</th>
+                    <th className='min-w-120px'>Pass Marks</th>
+                    <th className='min-w-120px'>Added By</th>
+                    <th className='min-w-120px'>Date</th>
+                    <th className='min-w-100px text-end'>Actions</th>
+                  </tr>
+                </thead>
+                {/* end::Table head */}
+                {/* begin::Table body */}
+                <tbody>
+                  {subjects.map((subject) => (
+                    <Fragment key={subject?.id}>
+                      {editSubjectId === subject.id ? (
+                        <EditSubjectForm
+                          editSubject={editSubject}
+                          setEditSubject={setEditSubject}
+                          setEditSubjectId={setEditSubjectId}
+                        />
+                      ) : (
+                        <SubjectTableRead
+                          subject={subject}
+                          key={subject?.id}
+                          setEditSubjectId={setEditSubjectId}
+                          setEditSubject={setEditSubject}
+                          handleDeleteSubject={handleDeleteSubject}
+                        />
+                      )}
+                    </Fragment>
+                  ))}
+                  {AddSubjectFromToggle && (
+                    <AddSubjectForm newSubject={newSubject} setNewSubject={setNewSubject} />
+                  )}
+                </tbody>
+                {/* end::Table body */}
+              </table>
+            </form>
             {/* begin::Table */}
-            <table className='table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4'>
-              {/* begin::Table head */}
-              <thead>
-                <tr className='fw-bold text-muted'>
-                  <th className='w-25px'>
-                    <div className='form-check form-check-sm form-check-custom form-check-solid'></div>
-                  </th>
-                  <th className='min-w-150px'>Authors</th>
-                  <th className='min-w-140px'>Company</th>
-                  <th className='min-w-120px'>Progress</th>
-                  <th className='min-w-100px text-end'>Actions</th>
-                </tr>
-              </thead>
-              {/* end::Table head */}
-              {/* begin::Table body */}
-              <tbody>
-                <tr>
-                  <td>
-                    <div className='form-check form-check-sm form-check-custom form-check-solid'></div>
-                  </td>
-                  <td>
-                    <div className='d-flex align-items-center'>
-                      <div className='symbol symbol-45px me-5'>
-                        <img src={toAbsoluteUrl('/media/avatars/300-14.jpg')} alt='' />
-                      </div>
-                      <div className='d-flex justify-content-start flex-column'>
-                        <a href='#' className='text-dark fw-bold text-hover-primary fs-6'>
-                          Ana Simmons
-                        </a>
-                        <span className='text-muted fw-semibold text-muted d-block fs-7'>
-                          HTML, JS, ReactJS
-                        </span>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <a href='#' className='text-dark fw-bold text-hover-primary d-block fs-6'>
-                      Intertico
-                    </a>
-                    <span className='text-muted fw-semibold text-muted d-block fs-7'>
-                      Web, UI/UX Design
-                    </span>
-                  </td>
-                  <td className='text-end'>
-                    <div className='d-flex flex-column w-100 me-2'>
-                      <div className='d-flex flex-stack mb-2'>
-                        <span className='text-muted me-2 fs-7 fw-semibold'>50%</span>
-                      </div>
-                      <div className='progress h-6px w-100'>
-                        <div
-                          className='progress-bar bg-primary'
-                          role='progressbar'
-                          style={{width: '50%'}}
-                        ></div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div className='d-flex justify-content-end flex-shrink-0'>
-                      <a
-                        href='#'
-                        className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                      >
-                        <KTIcon iconName='switch' className='fs-3' />
-                      </a>
-                      <a
-                        href='#'
-                        className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1'
-                      >
-                        <KTIcon iconName='pencil' className='fs-3' />
-                      </a>
-                      <a
-                        href='#'
-                        className='btn btn-icon btn-bg-light btn-active-color-primary btn-sm'
-                      >
-                        <KTIcon iconName='trash' className='fs-3' />
-                      </a>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-              {/* end::Table body */}
-            </table>
             {/* end::Table */}
           </div>
           {/* end::Table container */}
         </div>
         {/* begin::Body */}
-      </>
+      </div>
     </>
   )
 }

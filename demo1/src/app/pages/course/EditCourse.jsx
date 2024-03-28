@@ -26,11 +26,11 @@ const EditCourse = () => {
   const resLocation = useLocation()
   //console.log(resLocation.state)
   const [editCourse, setEditCourse] = useState({
-    _id: resLocation.state._id,
-    courseName: resLocation.state.courseName,
-    courseType: resLocation.state.courseType._id,
-    numberOfYears: resLocation.state.numberOfYears._id,
-    category: resLocation.state.category._id,
+    _id: resLocation.state?._id,
+    courseName: resLocation.state?.courseName,
+    courseType: resLocation.state?.courseType?._id,
+    numberOfYears: resLocation.state?.numberOfYears?._id,
+    category: resLocation.state?.category?._id,
   })
   const [loading, setLoading] = React.useState(false)
   const navigate = useNavigate()
@@ -41,7 +41,7 @@ const EditCourse = () => {
     initialValues,
     validationSchema: CourseSchema,
     onSubmit: async (values) => {
-      updateCourseMutation.mutate({...values, _id: resLocation.state._id})
+      updateCourseMutation.mutate({...values, _id: resLocation.state?._id})
       navigate('/course/addCourse')
       //console.log(values)
     },
