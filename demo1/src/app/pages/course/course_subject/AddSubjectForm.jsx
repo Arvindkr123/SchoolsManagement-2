@@ -12,6 +12,7 @@ const AddSubjectForm = ({newSubject, setNewSubject}) => {
             onChange={(e) => setNewSubject({...newSubject, subjectName: e.target.value})}
             placeholder='Enter subject name...'
             className='form-control'
+            required={'required'}
           />
         </td>
         <td>
@@ -21,13 +22,14 @@ const AddSubjectForm = ({newSubject, setNewSubject}) => {
             onChange={(e) => setNewSubject({...newSubject, subjectCode: e.target.value})}
             placeholder='Enter subject code...'
             className='form-control'
+            required={'required'}
           />
         </td>
         <td>
           <input
             type='number'
             min={1}
-            max={1000}
+            max={5000}
             value={newSubject.fullMarks}
             onChange={(e) => setNewSubject({...newSubject, fullMarks: e.target.value})}
             placeholder='Enter full Marks...'
@@ -39,7 +41,7 @@ const AddSubjectForm = ({newSubject, setNewSubject}) => {
             className='form-control'
             type='number'
             min={1}
-            max={1000}
+            max={5000}
             value={newSubject.passMarks}
             onChange={(e) => setNewSubject({...newSubject, passMarks: e.target.value})}
             placeholder='Enter pass Marks...'
@@ -47,9 +49,20 @@ const AddSubjectForm = ({newSubject, setNewSubject}) => {
         </td>
 
         <td>
-          <button type='submit' className='btn btn-success'>
-            Add
-          </button>
+          <div className='d-flex justify-content-end flex-shrink-0'>
+            <button
+              type='submit'
+              className='btn btn-success btn btn-success btn-active-color-primary btn-sm me-1 px-5'
+            >
+              Add
+            </button>
+            <button
+              type='button'
+              className='btn btn-danger btn btn-success btn-active-color-primary btn-sm me-1 px-5'
+            >
+              cancel
+            </button>
+          </div>
         </td>
       </tr>
     </>
