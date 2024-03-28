@@ -1,4 +1,4 @@
-const AddSubjectForm = ({newSubject, setNewSubject}) => {
+const AddSubjectForm = ({newSubject, setNewSubject, setAddSubjectFormToggle}) => {
   return (
     <>
       <tr>
@@ -58,6 +58,7 @@ const AddSubjectForm = ({newSubject, setNewSubject}) => {
             </button>
             <button
               type='button'
+              onClick={() => setAddSubjectFormToggle(false)}
               className='btn btn-danger btn btn-success btn-active-color-primary btn-sm me-1 px-5'
             >
               cancel

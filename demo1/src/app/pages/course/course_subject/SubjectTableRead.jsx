@@ -6,6 +6,7 @@ const SubjectTableRead = ({
   setEditSubjectId,
   setEditSubject,
   handleDeleteSubject,
+  index,
 }) => {
   const editSubjectAndIdHanlder = (id, subject) => {
     setEditSubjectId(id)
@@ -16,6 +17,7 @@ const SubjectTableRead = ({
       <td>
         <div className='form-check form-check-sm form-check-custom form-check-solid'></div>
       </td>
+      <td>{index + 1}</td>
       <td>{subject.subjectName}</td>
       <td>{subject.subjectCode}</td>
       <td>{subject.fullMarks}</td>

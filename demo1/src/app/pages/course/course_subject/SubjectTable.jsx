@@ -107,6 +107,7 @@ const SubjectTable = ({className}) => {
                     <th className='w-25px'>
                       <div className='form-check form-check-sm form-check-custom form-check-solid'></div>
                     </th>
+                    <th className='min-w-150px'>SR.</th>
                     <th className='min-w-150px'>Subject Name</th>
                     <th className='min-w-140px'>Subject Code</th>
                     <th className='min-w-120px'>Full Marks</th>
@@ -119,7 +120,7 @@ const SubjectTable = ({className}) => {
                 {/* end::Table head */}
                 {/* begin::Table body */}
                 <tbody>
-                  {subjects.map((subject) => (
+                  {subjects.map((subject, index) => (
                     <Fragment key={subject?.id}>
                       {editSubjectId === subject.id ? (
                         <EditSubjectForm
@@ -129,6 +130,7 @@ const SubjectTable = ({className}) => {
                         />
                       ) : (
                         <SubjectTableRead
+                          index={index}
                           subject={subject}
                           key={subject?.id}
                           setEditSubjectId={setEditSubjectId}
@@ -139,7 +141,11 @@ const SubjectTable = ({className}) => {
                     </Fragment>
                   ))}
                   {AddSubjectFromToggle && (
-                    <AddSubjectForm newSubject={newSubject} setNewSubject={setNewSubject} />
+                    <AddSubjectForm
+                      setAddSubjectFormToggle={setAddSubjectFormToggle}
+                      newSubject={newSubject}
+                      setNewSubject={setNewSubject}
+                    />
                   )}
                 </tbody>
                 {/* end::Table body */}
