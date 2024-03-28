@@ -6,9 +6,10 @@ import axios from 'axios'
 import {NavLink} from 'react-router-dom'
 import SubjectTable from './course_subject/SubjectTable'
 
-const AddSubject = ({className}) => {
+const AddSubject = ({className, editCourse = {}}) => {
   const [courseSubjectRef, setCourseSubjectRef] = useState({})
   const [activeTab, setActiveTab] = useState(1)
+  //console.log(editCourse)
 
   const handleTabClick = (index) => {
     //console.log(index)
@@ -16,34 +17,34 @@ const AddSubject = ({className}) => {
   }
 
   useEffect(() => {
-    const fetchCourseTypes = async () => {
-      let courseTypeId = JSON.parse(localStorage?.getItem('AddSubjectRelatedData'))?.courseType
-      try {
-        const res = await axios.get(`http://localhost:8080/api/courses/courseType/${courseTypeId}`)
-        setCourseSubjectRef((prevState) => ({...prevState, courseType: res?.data?.courseType}))
-      } catch (error) {
-        console.log(error)
-      }
-    }
+    const fetchData = async () => {
+      let courseTypeId = editCourse
+        ? editCourse.courseType
+        : JSON.parse(localStorage?.getItem('AddSubjectRelatedData'))?.courseType
+      let numberOfYearId = editCourse
+        ? editCourse.numberOfYears
+        : JSON.parse(localStorage?.getItem('AddSubjectRelatedData'))?.numberOfYears
 
-    const fetchNumberOfYears = async () => {
-      let numberOfYearId = JSON.parse(localStorage.getItem('AddSubjectRelatedData'))?.numberOfYears
       try {
-        const res = await axios.get(
+        const courseTypeRes = await axios.get(
+          `http://localhost:8080/api/courses/courseType/${courseTypeId}`
+        )
+        const numberOfYearsRes = await axios.get(
           `http://localhost:8080/api/courses/numberOfYears/${numberOfYearId}`
         )
-        setCourseSubjectRef((prevState) => ({
-          ...prevState,
-          numberOfYears: res?.data?.numberOfYears,
-        }))
+
+        setCourseSubjectRef({
+          ...courseSubjectRef,
+          courseType: courseTypeRes?.data?.courseType,
+          numberOfYears: numberOfYearsRes?.data?.numberOfYears,
+        })
       } catch (error) {
         console.log(error)
       }
     }
 
-    fetchCourseTypes()
-    fetchNumberOfYears()
-  }, [])
+    fetchData()
+  }, [editCourse]) // Ensure useEffect runs when editCourse changes
 
   return (
     <div className={`card ${className}`}>
