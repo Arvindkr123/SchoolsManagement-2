@@ -55,6 +55,8 @@ const SubjectTable = ({className}) => {
     e.preventDefault()
     //console.log(newSubject)
     setSubjects([...subjects, {...newSubject, id: Date.now(), addedBy: 'Admin', date: Date.now()}])
+    setAddSubjectFormToggle(false)
+    setNewSubject({subjectName: '', subjectCode: '', fullMarks: 0, passMarks: 0})
   }
 
   const handleDeleteSubject = (id) => {
@@ -63,8 +65,11 @@ const SubjectTable = ({className}) => {
 
   const handleEditSubject = (e) => {
     e.preventDefault()
-    const editTableSubject = subjects.filter((s) => s.id === editSubject.id)
-    console.log(editTableSubject)
+    const newSubjects = [...subjects]
+    const index = newSubjects.findIndex((subject) => subject.id === editSubjectId)
+    newSubjects[index] = editSubject
+    setSubjects(newSubjects)
+    setEditSubjectId(null)
   }
 
   return (
