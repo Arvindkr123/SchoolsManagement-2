@@ -93,7 +93,12 @@ const AddSubject = ({className}) => {
               id={`kt_table_widget_5_tab_${i + 1}`}
             >
               {/* begin::Table container */}
-              <SubjectTable />
+              <SubjectTable
+                activeTab={activeTab}
+                yearWiseAndSemster={
+                  courseSubjectRef?.courseType === 'Annual' ? `Year ${i + 1}` : `Semester ${i + 1}`
+                }
+              />
               {/* end::Table */}
             </div>
           ))}

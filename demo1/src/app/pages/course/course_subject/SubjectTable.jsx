@@ -4,10 +4,12 @@ import SubjectTableRead from './SubjectTableRead'
 import AddSubjectForm from './AddSubjectForm'
 import EditSubjectForm from './EditSubjectForm'
 
-const SubjectTable = ({className}) => {
+const SubjectTable = ({className, yearWiseAndSemster, activeTab}) => {
+  //console.log(yearWiseAndSemster.split(' ')[0] + ' ' + activeTab)
   const [subjects, setSubjects] = useState([
     {
       id: 1,
+      semYear: 'Semester 1',
       subjectName: 'English',
       subjectCode: 'ENG-101',
       fullMarks: 100,
@@ -17,6 +19,7 @@ const SubjectTable = ({className}) => {
     },
     {
       id: 2,
+      semYear: 'Semester 1',
       subjectName: 'Math',
       subjectCode: 'MH-101',
       fullMarks: 100,
@@ -26,6 +29,7 @@ const SubjectTable = ({className}) => {
     },
     {
       id: 3,
+      semYear: 'Semester 2',
       subjectName: 'Math2',
       subjectCode: 'MH2-101',
       fullMarks: 100,
@@ -54,7 +58,16 @@ const SubjectTable = ({className}) => {
   const handleAddNewSubject = (e) => {
     e.preventDefault()
     //console.log(newSubject)
-    setSubjects([...subjects, {...newSubject, id: Date.now(), addedBy: 'Admin', date: Date.now()}])
+    setSubjects([
+      ...subjects,
+      {
+        ...newSubject,
+        id: Date.now(),
+        addedBy: 'Admin',
+        semYear: yearWiseAndSemster.split(' ')[0] + ' ' + activeTab,
+        date: Date.now(),
+      },
+    ])
     setAddSubjectFormToggle(false)
     setNewSubject({subjectName: '', subjectCode: '', fullMarks: 0, passMarks: 0})
   }
@@ -120,26 +133,32 @@ const SubjectTable = ({className}) => {
                 {/* end::Table head */}
                 {/* begin::Table body */}
                 <tbody>
-                  {subjects.map((subject, index) => (
-                    <Fragment key={subject?.id}>
-                      {editSubjectId === subject.id ? (
-                        <EditSubjectForm
-                          editSubject={editSubject}
-                          setEditSubject={setEditSubject}
-                          setEditSubjectId={setEditSubjectId}
-                        />
-                      ) : (
-                        <SubjectTableRead
-                          index={index}
-                          subject={subject}
-                          key={subject?.id}
-                          setEditSubjectId={setEditSubjectId}
-                          setEditSubject={setEditSubject}
-                          handleDeleteSubject={handleDeleteSubject}
-                        />
-                      )}
-                    </Fragment>
-                  ))}
+                  {subjects
+                    .filter((subject) => {
+                      const semester = parseInt(subject.semYear.split(' ')[1])
+                      // Check if the semester matches the activeTab
+                      return subject.semYear === yearWiseAndSemster.split(' ')[0] + ' ' + activeTab
+                    })
+                    .map((subject, index) => (
+                      <Fragment key={subject?.id}>
+                        {editSubjectId === subject.id ? (
+                          <EditSubjectForm
+                            editSubject={editSubject}
+                            setEditSubject={setEditSubject}
+                            setEditSubjectId={setEditSubjectId}
+                          />
+                        ) : (
+                          <SubjectTableRead
+                            index={index}
+                            subject={subject}
+                            key={subject?.id}
+                            setEditSubjectId={setEditSubjectId}
+                            setEditSubject={setEditSubject}
+                            handleDeleteSubject={handleDeleteSubject}
+                          />
+                        )}
+                      </Fragment>
+                    ))}
                   {AddSubjectFromToggle && (
                     <AddSubjectForm
                       setAddSubjectFormToggle={setAddSubjectFormToggle}
