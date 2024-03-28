@@ -42,8 +42,10 @@ const EditCourse = () => {
     validationSchema: CourseSchema,
     onSubmit: async (values) => {
       updateCourseMutation.mutate({...values, _id: resLocation.state?._id})
-      navigate('/course/addCourse')
+      //navigate('/course/addCourse')
       //console.log(values)
+      setEditCourse(values)
+      setLoading(true)
     },
   })
   return (
@@ -155,11 +157,13 @@ const EditCourse = () => {
 
             <div className='card-footer d-flex justify-content-end py-6 px-9'>
               <button type='submit' className='btn btn-primary' disabled={loading}>
-                {!loading && 'Save Changes'}
+                {!loading && 'Update'}
+
                 {loading && (
                   <span className='indicator-progress' style={{display: 'block'}}>
-                    Please wait...{' '}
-                    <span className='spinner-border spinner-border-sm align-middle ms-2'></span>
+                    {/* Please wait...{' '} */}
+                    Updated
+                    {/* <span className='spinner-border spinner-border-sm align-middle ms-2'></span> */}
                   </span>
                 )}
               </button>
